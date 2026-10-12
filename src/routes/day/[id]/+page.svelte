@@ -226,7 +226,7 @@
 	<section>
 		<div class="mb-2 flex items-center justify-between">
 			<h2 class="text-lg font-bold text-gray-900">🍽️ Where to Eat</h2>
-			<button onclick={() => showAddR = !showAddR} class="{showAddR ? 'rounded-xl bg-gray-100 py-2 text-sm text-gray-500 active:bg-gray-200 w-full' : 'btn-add'}">{showAddR ? 'Cancel' : '+'}</button>
+			<button onclick={() => showAddR = !showAddR} class="{showAddR ? 'rounded-xl bg-gray-100 py-2 text-sm text-gray-500 active:bg-gray-200 w-full' : 'btn-add'}">{showAddR ? 'Cancel' : '+ Add'}</button>
 		</div>
 
 		{#if showAddR}
@@ -321,7 +321,7 @@
 	<section>
 		<div class="mb-2 flex items-center justify-between">
 			<h2 class="text-lg font-bold text-gray-900">🚌 Transport</h2>
-			<button onclick={() => showAddT = !showAddT} class="{showAddT ? 'rounded-xl bg-gray-100 py-2 text-sm text-gray-500 active:bg-gray-200 w-full' : 'btn-add'}">{showAddT ? 'Cancel' : '+'}</button>
+			<button onclick={() => showAddT = !showAddT} class="{showAddT ? 'rounded-xl bg-gray-100 py-2 text-sm text-gray-500 active:bg-gray-200 w-full' : 'btn-add'}">{showAddT ? 'Cancel' : '+ Add'}</button>
 		</div>
 		{#if showAddT}
 			<div class="mb-4 rounded-xl border border-cyan-200 bg-cyan-50 p-4">

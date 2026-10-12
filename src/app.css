@@ -9,37 +9,36 @@
   --sunset: #f59e0b;
 }
 
-/* Shared delete button — large, tappable, consistent everywhere */
+/* Shared delete button — small, top-right corner style */
 .btn-delete {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 0.75rem;
-  background: #fef2f2;
-  color: #ef4444;
-  font-size: 1.1rem;
-  font-weight: 600;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  color: #d1d5db;
+  font-size: 0.75rem;
   flex-shrink: 0;
-  transition: background 0.15s;
+  transition: color 0.15s;
+  align-self: flex-start;
+  margin-top: 0.125rem;
 }
-.btn-delete:active { background: #fee2e2; }
+.btn-delete:hover, .btn-delete:active { color: #ef4444; }
 
-/* Shared add button — large sleek + */
+/* Shared add button — simple text link style */
 .btn-add {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 3rem;
-  border-radius: 0.75rem;
-  border: 2px dashed #d1d5db;
-  background: transparent;
-  color: #9ca3af;
-  font-size: 1.5rem;
-  font-weight: 300;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  gap: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #6b7280;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: border-color 0.15s, color 0.15s;
 }
-.btn-add:active { border-color: #9ca3af; color: #6b7280; background: #f9fafb; }
+.btn-add:hover, .btn-add:active { border-color: #9ca3af; color: #374151; }
 

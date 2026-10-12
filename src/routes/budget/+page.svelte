@@ -100,7 +100,7 @@
 
 	<!-- Add -->
 	{#if !showAdd}
-		<button class="btn-add mb-4" onclick={() => showAdd = true}>+</button>
+		<button class="btn-add mb-4" onclick={() => showAdd = true}>+ Add</button>
 	{:else}
 		<button class="mb-4 w-full rounded-xl bg-gray-100 py-2 text-sm text-gray-500 active:bg-gray-200" onclick={() => showAdd = false}>Cancel</button>
 	{/if}
