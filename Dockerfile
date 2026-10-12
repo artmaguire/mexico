@@ -1,6 +1,9 @@
 # ── Build stage ──────────────────────────────────────────────
 FROM node:22-alpine AS build
 
+# better-sqlite3 compiles native code via node-gyp — needs these build tools.
+RUN apk add --no-cache python3 make g++
+
 WORKDIR /app
 
 COPY package*.json ./
