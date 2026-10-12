@@ -7,9 +7,17 @@
 	let { children }: LayoutProps = $props();
 
 	onMount(() => {
-		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('/sw.js');
-		}
+		if (!('serviceWorker' in navigator)) return;
+
+		// An earlier version of the service worker cached the unauthenticated
+		// redirect for "/", which then got replayed after login and bounced
+		// the user back to the gate. Force an update check on every load and
+		// activate a waiting worker immediately so already-affected browsers
+		// self-heal instead of needing a manual cache clear.
+		navigator.serviceWorker.register('/sw.js').then((reg) => {
+			reg.update().catch(() => {});
+			if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+		});
 	});
 
 	const navItems = [
