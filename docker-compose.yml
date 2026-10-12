@@ -1,10 +1,17 @@
 services:
   mexico-trip:
-    build: .
+    build:
+      context: .
+      args:
+        # Must match the address the browser actually hits — this is a
+        # BUILD-time value baked into the SvelteKit CSRF check, not a
+        # runtime env var. Change this and rebuild if you change the port
+        # or move to a different host.
+        PUBLIC_ORIGIN: http://192.168.0.119:5252
     ports:
       - "5252:3000"
     volumes:
       - ./data:/data
     environment:
-      - GATE_PASSWORD=bongo loco
+      - GATE_PASSWORD=bongologo
     restart: unless-stopped

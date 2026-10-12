@@ -4,8 +4,8 @@ import { redirect } from '@sveltejs/kit';
 const AUTH_COOKIE = 'mexico_auth';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	// Allow login page and API login endpoint without auth
-	if (event.url.pathname === '/login' || event.url.pathname === '/api/login') {
+	// Allow the login page through unauthenticated (GET to show it, POST to submit the form action)
+	if (event.url.pathname === '/login') {
 		return resolve(event);
 	}
 

@@ -1,31 +1,8 @@
 <script lang="ts">
-	let password = $state('');
-	let errorMsg = $state('');
+	import { enhance } from '$app/forms';
+	let { form } = $props();
+
 	let loading = $state(false);
-
-	async function submit() {
-		errorMsg = '';
-		loading = true;
-		try {
-			const res = await fetch('/api/login', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ password })
-			});
-			if (res.ok) {
-				window.location.href = '/';
-			} else {
-				errorMsg = 'Wrong password — try again 🌮';
-			}
-		} catch {
-			errorMsg = 'Something went wrong';
-		}
-		loading = false;
-	}
-
-	function onKeydown(e: KeyboardEvent) {
-		if (e.key === 'Enter') submit();
-	}
 </script>
 
 <svelte:head>
@@ -41,25 +18,36 @@
 			<p class="mt-1 text-sm text-gray-500">Enter the password to continue</p>
 		</div>
 
-		<input
-			type="password"
-			bind:value={password}
-			onkeydown={onKeydown}
-			placeholder="Password"
-			class="w-full rounded-lg border border-gray-300 px-4 py-3 text-center text-lg focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
-			autocomplete="off"
-		/>
-
-		{#if errorMsg}
-			<p class="mt-2 text-center text-sm text-red-500">{errorMsg}</p>
-		{/if}
-
-		<button
-			onclick={submit}
-			disabled={loading}
-			class="mt-4 w-full rounded-lg bg-cyan-600 px-4 py-3 text-base font-medium text-white active:bg-cyan-700 disabled:opacity-50"
+		<form
+			method="POST"
+			use:enhance={() => {
+				loading = true;
+				return async ({ update }) => {
+					await update();
+					loading = false;
+				};
+			}}
 		>
-			{loading ? 'Checking...' : 'Enter 🌴'}
-		</button>
+			<input
+				type="password"
+				name="password"
+				placeholder="Password"
+				class="w-full rounded-lg border border-gray-300 px-4 py-3 text-center text-lg focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
+				autocomplete="off"
+				autofocus
+			/>
+
+			{#if form?.error}
+				<p class="mt-2 text-center text-sm text-red-500">Wrong password — try again 🌮</p>
+			{/if}
+
+			<button
+				type="submit"
+				disabled={loading}
+				class="mt-4 w-full rounded-lg bg-cyan-600 px-4 py-3 text-base font-medium text-white active:bg-cyan-700 disabled:opacity-50"
+			>
+				{loading ? 'Checking...' : 'Enter 🌴'}
+			</button>
+		</form>
 	</div>
 </div>
