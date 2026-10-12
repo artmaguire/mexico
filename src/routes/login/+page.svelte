@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	let { form } = $props();
+	import { goto } from '$app/navigation';
+	import type { ActionData, PageData } from './$types';
 
+	let { data, form }: { data: PageData; form: ActionData } = $props();
 	let loading = $state(false);
 </script>
 
@@ -22,8 +24,19 @@
 			method="POST"
 			use:enhance={() => {
 				loading = true;
-				return async ({ update }) => {
-					await update();
+				// Providing a callback overrides SvelteKit's default enhance
+				// behaviour entirely — including following redirects. So the
+				// redirect has to be handled explicitly here, otherwise the
+				// server's redirect result is silently ignored and the user
+				// just sits on the login page.
+				return async ({ result }) => {
+					if (result.type === 'redirect') {
+						loading = false;
+						await goto(result.location, { invalidateAll: true });
+						return;
+					}
+					const { applyAction } = await import('$app/forms');
+					await applyAction(result);
 					loading = false;
 				};
 			}}

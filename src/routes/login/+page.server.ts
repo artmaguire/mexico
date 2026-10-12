@@ -1,7 +1,16 @@
 import { fail, redirect } from '@sveltejs/kit';
-import type { Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 
 const PASSWORD = (process.env.GATE_PASSWORD ?? 'cocobongo').toLowerCase().replace(/\s+/g, '');
+const AUTH_COOKIE = 'mexico_auth';
+
+export const load: PageServerLoad = async ({ cookies, url }) => {
+	// Already authed? Skip the gate entirely rather than showing the form.
+	if (cookies.get(AUTH_COOKIE) === 'authenticated') {
+		throw redirect(303, url.searchParams.get('next') || '/');
+	}
+	return {};
+};
 
 export const actions: Actions = {
 	default: async ({ request, cookies, url }) => {
@@ -15,15 +24,13 @@ export const actions: Actions = {
 
 		// Only mark the cookie Secure on real HTTPS. On plain-HTTP LAN access
 		// (e.g. http://192.168.0.119:5252) a Secure cookie is silently dropped
-		// by the browser — the login looks like it "succeeds" (302 redirect)
-		// but the cookie never actually gets stored, so the next request has
-		// no auth and bounces straight back to /login. Honour a reverse
-		// proxy's forwarded proto too, in case one sits in front of this.
+		// by the browser, which would leave the user stuck at the gate.
+		// Honour a reverse proxy's forwarded proto too.
 		const isHttps =
 			url.protocol === 'https:' ||
 			request.headers.get('x-forwarded-proto')?.split(',')[0].trim() === 'https';
 
-		cookies.set('mexico_auth', 'authenticated', {
+		cookies.set(AUTH_COOKIE, 'authenticated', {
 			path: '/',
 			httpOnly: true,
 			sameSite: 'lax',
@@ -31,6 +38,6 @@ export const actions: Actions = {
 			maxAge: 60 * 60 * 24 * 90 // 90 days
 		});
 
-		throw redirect(303, '/');
+		throw redirect(303, url.searchParams.get('next') || '/');
 	}
 };
