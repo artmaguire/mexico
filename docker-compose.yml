@@ -13,5 +13,5 @@ services:
     volumes:
       - ./data:/data
     environment:
-      - GATE_PASSWORD=bongologo
+      - GATE_PASSWORD=cocobongo
     restart: unless-stopped

@@ -1,7 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
-const PASSWORD = (process.env.GATE_PASSWORD ?? 'bongologo').toLowerCase().replace(/\s+/g, '');
+const PASSWORD = (process.env.GATE_PASSWORD ?? 'cocobongo').toLowerCase().replace(/\s+/g, '');
 
 export const actions: Actions = {
 	default: async ({ request, cookies, url }) => {
