@@ -1,0 +1,10 @@
+services:
+  mexico-trip:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/data
+    environment:
+      - GATE_PASSWORD=bongo loco
+    restart: unless-stopped

@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+
+:root {
+  --sand: #faf6f0;
+  --ocean: #0891b2;
+  --ocean-light: #e0f7fa;
+  --coral: #e85d4a;
+  --palm: #16a34a;
+  --sunset: #f59e0b;
+}
