@@ -82,7 +82,7 @@
 
 	{#if tab === 'tickets'}
 		{#if !showAddTicket}
-			<button class="btn-add mb-4" onclick={() => showAddTicket = true}>+ Add ticket</button>
+			<div class="mb-4 flex justify-end"><button class="btn-add" onclick={() => showAddTicket = true}>+ Add ticket</button></div>
 		{:else}
 			<button class="mb-4 w-full rounded-xl bg-gray-100 py-2 text-sm text-gray-500 active:bg-gray-200" onclick={() => showAddTicket = false}>Cancel</button>
 		{/if}
@@ -136,7 +136,7 @@
 		{/each}
 	{:else}
 		{#if !showAddAccom}
-			<button class="btn-add mb-4" onclick={() => showAddAccom = true}>+ Add accommodation</button>
+			<div class="mb-4 flex justify-end"><button class="btn-add" onclick={() => showAddAccom = true}>+ Add accommodation</button></div>
 		{:else}
 			<button class="mb-4 w-full rounded-xl bg-gray-100 py-2 text-sm text-gray-500 active:bg-gray-200" onclick={() => showAddAccom = false}>Cancel</button>
 		{/if}

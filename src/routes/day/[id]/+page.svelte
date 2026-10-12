@@ -200,7 +200,7 @@
 	<section>
 		<div class="mb-2 flex items-center justify-between">
 			<h2 class="text-lg font-bold text-gray-900">✅ To-do</h2>
-			<button onclick={() => showAddTodo = !showAddTodo} class="rounded-lg bg-gray-100 px-3 py-2 text-xs font-medium text-gray-600 active:bg-gray-200">{showAddTodo ? 'Cancel' : '+ Add'}</button>
+			<button onclick={() => showAddTodo = !showAddTodo} class="{showAddTodo ? 'rounded-lg bg-gray-100 px-3 py-2 text-xs font-medium text-gray-600 active:bg-gray-200' : 'btn-add'}">{showAddTodo ? 'Cancel' : '+ Add'}</button>
 		</div>
 		{#if showAddTodo}
 			<div class="mb-3 flex gap-2">
