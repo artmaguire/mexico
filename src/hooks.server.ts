@@ -2,7 +2,7 @@ import type { Handle } from '@sveltejs/kit';
 import { redirect } from '@sveltejs/kit';
 
 const AUTH_COOKIE = 'mexico_auth';
-const PUBLIC_PATHS = ['/login'];
+const PUBLIC_PATHS = ['/login', '/api/login'];
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const p = event.url.pathname;
