@@ -99,9 +99,11 @@
 	</div>
 
 	<!-- Add -->
-	<div class="mb-4 flex justify-end">
-		<button onclick={() => showAdd = !showAdd} class="rounded-lg bg-cyan-600 px-3 py-2 text-xs font-medium text-white active:bg-cyan-700">{showAdd ? 'Cancel' : '+ Add expense'}</button>
-	</div>
+	{#if !showAdd}
+		<button class="btn-add mb-4" onclick={() => showAdd = true}>+</button>
+	{:else}
+		<button class="mb-4 w-full rounded-xl bg-gray-100 py-2 text-sm text-gray-500 active:bg-gray-200" onclick={() => showAdd = false}>Cancel</button>
+	{/if}
 	{#if showAdd}
 		<div class="mb-6 rounded-xl border border-cyan-200 bg-cyan-50 p-4">
 			<div class="grid gap-2">
@@ -138,7 +140,7 @@
 								</div>
 								{#if item.notes}<div class="mt-0.5 ml-6 text-xs text-gray-400">{item.notes}</div>{/if}
 							</div>
-							<button onclick={() => deleteItem(item.id)} class="shrink-0 text-xs text-red-400 active:text-red-600">✕</button>
+							<button onclick={() => deleteItem(item.id)} class="btn-delete">✕</button>
 						</div>
 						<!-- Cost: estimated / actual with color -->
 						<div class="mt-2 ml-6 flex items-center gap-2 text-sm">

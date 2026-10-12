@@ -15,9 +15,9 @@
 	// Pill filter — same style as Food/Phrases/Budget pages.
 	const locations = [
 		{ label: '🗺️ All', cat: 'all', active: 'bg-gray-800 text-white', inactive: 'bg-white text-gray-600 border border-gray-200' },
-		{ label: '🌮 Cancún', cat: 'centro', active: 'bg-cyan-600 text-white', inactive: 'bg-white text-cyan-700 border border-cyan-200' },
+		{ label: '🌮 Cancún Centro', cat: 'centro', active: 'bg-cyan-600 text-white', inactive: 'bg-white text-cyan-700 border border-cyan-200' },
 		{ label: '🏝️ Holbox', cat: 'holbox', active: 'bg-green-600 text-white', inactive: 'bg-white text-green-700 border border-green-200' },
-		{ label: '🏖️ Hotel Zone', cat: 'hotelzone', active: 'bg-pink-600 text-white', inactive: 'bg-white text-pink-700 border border-pink-200' }
+		{ label: '🏖️ Cancún Hotel', cat: 'hotelzone', active: 'bg-pink-600 text-white', inactive: 'bg-white text-pink-700 border border-pink-200' }
 	];
 	let activeFilter = $state('all');
 

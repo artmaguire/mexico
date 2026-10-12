@@ -8,3 +8,38 @@
   --palm: #16a34a;
   --sunset: #f59e0b;
 }
+
+/* Shared delete button — large, tappable, consistent everywhere */
+.btn-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  background: #fef2f2;
+  color: #ef4444;
+  font-size: 1.1rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.btn-delete:active { background: #fee2e2; }
+
+/* Shared add button — large sleek + */
+.btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 3rem;
+  border-radius: 0.75rem;
+  border: 2px dashed #d1d5db;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 1.5rem;
+  font-weight: 300;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.btn-add:active { border-color: #9ca3af; color: #6b7280; background: #f9fafb; }
+

@@ -166,10 +166,7 @@ function seedData(db: Database.Database) {
 		insertRestaurant.run(7, 'Dinner', 'La Habichuela Sunset', 'Elevated Mexican/Caribbean, lagoon-view terrace', 4.5, '€18–28 pp', 'La Habichuela Sunset Cancún', 0, 0, 3);
 		insertRestaurant.run(7, 'Dinner', 'Porfirio\'s Cancún', 'Upscale Mexican, lively atmosphere, great for a treat night', 4.4, '€20–30 pp', 'Porfirios Cancún', 1, 0, 4);
 
-		// Accommodations
-		insertAccom.run(1, 'TBC — Cancún Centro', 'Cancún Centro, SM22-24 near Parque de las Palapas', '', '2026-11-03', '2026-11-05', '', '~€30', 'Book near Palapas park', 'Parque de las Palapas Cancún');
-		insertAccom.run(4, 'TBC — Holbox', 'Isla Holbox', '', '2026-11-06', '2026-11-09', '', '~€40', 'Bring cash, patchy cards. Now 3 nights.', 'Holbox island Mexico');
-		insertAccom.run(7, 'TBC — Cancún Hotel Zone', 'Zona Hotelera, Blvd Kukulcán, Cancún', '', '2026-11-09', '2026-11-10', '', '~€70', 'One night only — pick something with beach access for the evening', 'Cancun Hotel Zone');
+		// Accommodations — none seeded, user adds their own bookings
 
 		// Todos — Day 1
 		insertTodo.run(1, 'day', 'Book Cancún Centro accommodation (3 nights: 3rd, 4th, 5th)', 1);
@@ -226,33 +223,8 @@ function seedData(db: Database.Database) {
 
 		const insertBudget = db.prepare('INSERT INTO budget_items (day_id, category, description, estimated_cost, currency, notes) VALUES (?, ?, ?, ?, ?, ?)');
 
-		// Budget — estimated costs (for 2 people, in EUR, late-booking prices)
-		// Transport
-		insertBudget.run(1, 'transport', 'Airport bus/taxi to Centro', 20, 'EUR', 'Taxi more likely at 8pm');
-		insertBudget.run(2, 'transport', 'R1 bus to ferry (return ×2)', 3, 'EUR', '');
-		insertBudget.run(2, 'transport', 'Ultramar ferry return ×2', 32, 'EUR', '~€14-16 pp return');
-		insertBudget.run(2, 'activity', 'Golf cart Isla Mujeres', 45, 'EUR', 'Nov high season');
-		insertBudget.run(2, 'activity', 'Punta Sur entry ×2', 8, 'EUR', '');
-		insertBudget.run(3, 'transport', 'Chichén Itzá tour ×2', 140, 'EUR', '~€60-75 pp, late booking premium');
-		insertBudget.run(4, 'transport', 'ADO Cancún→Chiquilá ×2', 52, 'EUR', '~€24-28 pp');
-		insertBudget.run(4, 'transport', 'Ferry to Holbox ×2', 24, 'EUR', '~€12 pp');
-		insertBudget.run(7, 'transport', 'Ferry Holbox→Chiquilá ×2', 24, 'EUR', '~€12 pp');
-		insertBudget.run(7, 'transport', 'ADO Chiquilá→Cancún ×2', 52, 'EUR', '~€24-28 pp');
-		insertBudget.run(8, 'transport', 'Resort transfer (Hotel Zone→Puerto Mujeres)', 30, 'EUR', 'Taxi or shuttle for 2');
-		// Food (daily totals for 2 — mix of street food + sit-down)
-		insertBudget.run(1, 'food', 'Day 1 — arrival dinner', 12, 'EUR', 'Street tacos + drinks');
-		insertBudget.run(2, 'food', 'Day 2 — island lunch + dinner', 40, 'EUR', 'Island prices higher');
-		insertBudget.run(3, 'food', 'Day 3 — Valladolid + tacos', 30, 'EUR', 'Tour may include lunch');
-		insertBudget.run(4, 'food', 'Day 4 — travel + Holbox dinner', 28, 'EUR', '');
-		insertBudget.run(5, 'food', 'Day 5 — Holbox full day', 38, 'EUR', 'Island prices + treat dinner');
-		insertBudget.run(6, 'food', 'Day 6 — Holbox extra day', 35, 'EUR', 'Island prices');
-		insertBudget.run(7, 'food', 'Day 7 — travel + Hotel Zone dinner', 45, 'EUR', 'Hotel Zone prices are higher');
-		insertBudget.run(8, 'food', 'Day 8 — breakfast before transfer', 15, 'EUR', 'Hotel Zone breakfast prices');
-		// Accommodation (total for 2, late-booking Nov prices)
-		insertBudget.run(null, 'accommodation', 'Cancún Centro — 3 nights', 135, 'EUR', '~€45/night, late booking');
-		insertBudget.run(null, 'accommodation', 'Holbox — 3 nights', 210, 'EUR', '~€70/night, island premium + late, now 3 nights');
-		insertBudget.run(null, 'accommodation', 'Cancún Hotel Zone — 1 night', 90, 'EUR', '~€90/night, beachfront premium');
-		// Misc
+		// Budget — only misc seeded. Transport/food/accommodation/activities added by user
+		// from the day pages, which auto-create budget entries.
 		insertBudget.run(null, 'misc', 'Travel insurance', 60, 'EUR', 'Late purchase premium');
 		insertBudget.run(null, 'misc', 'Travel eSIM ×2', 20, 'EUR', 'Airalo/Holafly ~€10 pp for 7 days');
 		insertBudget.run(null, 'misc', 'ATM withdrawal fees', 15, 'EUR', '3-4 withdrawals');

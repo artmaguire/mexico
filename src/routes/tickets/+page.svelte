@@ -81,12 +81,11 @@
 	</div>
 
 	{#if tab === 'tickets'}
-		<div class="mb-4 flex justify-end">
-			<button
-				class="rounded-lg bg-cyan-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-cyan-700"
-				onclick={() => showAddTicket = !showAddTicket}
-			>{showAddTicket ? 'Cancel' : '+ Add ticket'}</button>
-		</div>
+		{#if !showAddTicket}
+			<button class="btn-add mb-4" onclick={() => showAddTicket = true}>+</button>
+		{:else}
+			<button class="mb-4 w-full rounded-xl bg-gray-100 py-2 text-sm text-gray-500 active:bg-gray-200" onclick={() => showAddTicket = false}>Cancel</button>
+		{/if}
 
 		{#if showAddTicket}
 			<div class="mb-6 rounded-xl border border-cyan-200 bg-cyan-50 p-4">
@@ -129,19 +128,18 @@
 									{#if ticket.confirmation_ref}<span>📋 {ticket.confirmation_ref}</span>{/if}
 								</div>
 							</div>
-							<button onclick={() => deleteTicket(ticket.id)} class="text-xs text-red-400 hover:text-red-600" title="Delete">✕</button>
+							<button onclick={() => deleteTicket(ticket.id)} class="btn-delete" title="Delete">✕</button>
 						</div>
 					{/each}
 				</div>
 			{/if}
 		{/each}
 	{:else}
-		<div class="mb-4 flex justify-end">
-			<button
-				class="rounded-lg bg-cyan-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-cyan-700"
-				onclick={() => showAddAccom = !showAddAccom}
-			>{showAddAccom ? 'Cancel' : '+ Add accommodation'}</button>
-		</div>
+		{#if !showAddAccom}
+			<button class="btn-add mb-4" onclick={() => showAddAccom = true}>+</button>
+		{:else}
+			<button class="mb-4 w-full rounded-xl bg-gray-100 py-2 text-sm text-gray-500 active:bg-gray-200" onclick={() => showAddAccom = false}>Cancel</button>
+		{/if}
 
 		{#if showAddAccom}
 			<div class="mb-6 rounded-xl border border-cyan-200 bg-cyan-50 p-4">
@@ -174,7 +172,7 @@
 								<p class="text-sm text-gray-600">{a.location}</p>
 							{/if}
 						</div>
-						<button onclick={() => deleteAccom(a.id)} class="text-xs text-red-400 hover:text-red-600" title="Delete">✕</button>
+						<button onclick={() => deleteAccom(a.id)} class="btn-delete" title="Delete">✕</button>
 					</div>
 					<div class="mt-2 flex flex-wrap gap-4 text-sm text-gray-600">
 						<span>📅 {a.check_in} → {a.check_out}</span>

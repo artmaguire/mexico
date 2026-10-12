@@ -72,7 +72,7 @@
 					<div class="flex min-h-[44px] items-center gap-3 rounded-lg border border-gray-100 bg-white px-3 py-2 shadow-sm">
 						<input type="checkbox" checked={!!item.checked} onchange={() => toggle(item.id, !!item.checked)} class="h-5 w-5 shrink-0 rounded border-gray-300 text-green-600" />
 						<span class="flex-1 text-sm {item.checked ? 'line-through text-gray-400' : 'text-gray-700'}">{item.text}</span>
-						<button onclick={() => remove(item.id)} class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-red-400 active:bg-red-50" title="Remove">✕</button>
+						<button onclick={() => remove(item.id)} class="btn-delete" title="Remove">✕</button>
 					</div>
 				{/each}
 			</div>

@@ -52,7 +52,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 </svelte:head>
 
-<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-cyan-600 via-cyan-500 to-amber-500 px-4">
+<div class="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-cyan-600 via-cyan-500 to-amber-500 px-4">
 	<div class="w-full max-w-sm rounded-2xl bg-white p-8 shadow-xl">
 		<div class="mb-6 text-center">
 			<div class="text-4xl">🇲🇽</div>
