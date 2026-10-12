@@ -2,7 +2,7 @@ services:
   mexico-trip:
     build: .
     ports:
-      - "3000:3000"
+      - "5252:3000"
     volumes:
       - ./data:/data
     environment:
